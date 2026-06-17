@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { isFresh, readCache, writeCache } from '../lib/cache';
 import { fetchCsvText, rawCsvUrl } from '../lib/github';
 import { parseQuestions } from '../lib/parseCsv';
 import type { Period, Question } from '../types';
@@ -25,16 +26,30 @@ export function useQuestions(company: string, period: Period, enabled = true) {
 
   useEffect(() => {
     if (!enabled) return;
-    const controller = new AbortController();
-    setState({ questions: [], loading: true, error: null });
+    const cacheKey = `csv:${company}:${period}`;
+    const cached = readCache<Question[]>(cacheKey);
+    const force = nonce > 0; // a manual refetch always re-syncs with GitHub
 
+    // Render cached data instantly; only show the skeleton on a cold start.
+    setState(
+      cached
+        ? { questions: cached.v, loading: false, error: null }
+        : { questions: [], loading: true, error: null },
+    );
+
+    // Fresh (<24h) and not a manual refetch: serve from cache, skip the network.
+    if (isFresh(cached) && !force) return;
+
+    const controller = new AbortController();
     fetchCsvText(rawCsvUrl(company, period), controller.signal)
       .then((text) => {
         const questions = parseQuestions(text);
+        writeCache(cacheKey, questions);
         setState({ questions, loading: false, error: null });
       })
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;
+        if (cached) return; // keep showing cached data if the refresh fails
         const message = err instanceof Error ? err.message : 'Something went wrong.';
         setState({ questions: [], loading: false, error: message });
       });

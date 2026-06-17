@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isFresh, readCache, writeCache } from '../lib/cache';
 import { fetchCompanyPeriods } from '../lib/github';
 import { ALL_PERIODS, type Period } from '../types';
 
@@ -23,16 +24,24 @@ export function useCompanyPeriods(company: string) {
   const [state, setState] = useState<PeriodsState>({ periods: [], loading: true });
 
   useEffect(() => {
-    const controller = new AbortController();
-    setState({ periods: [], loading: true });
+    const cacheKey = `periods:${company}`;
+    const cached = readCache<Period[]>(cacheKey);
+    setState(cached ? { periods: cached.v, loading: false } : { periods: [], loading: true });
 
+    // Fresh (<24h): use the cached periods and skip the rate-limited Contents API.
+    if (isFresh(cached)) return;
+
+    const controller = new AbortController();
     fetchCompanyPeriods(company, controller.signal)
       .then((periods) => {
         if (controller.signal.aborted) return;
-        setState({ periods: periods.length ? periods : ALL_PERIODS, loading: false });
+        const resolved = periods.length ? periods : ALL_PERIODS;
+        writeCache(cacheKey, resolved);
+        setState({ periods: resolved, loading: false });
       })
       .catch(() => {
         if (controller.signal.aborted) return;
+        if (cached) return; // keep cached periods if the refresh fails
         setState({ periods: ALL_PERIODS, loading: false });
       });
 
