@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Info, Search, Sparkles, X } from 'lucide-react';
 import { useCompanies } from '../hooks/useCompanies';
 import { formatCompany } from '../lib/cn';
+import { logoUrl } from '../lib/logo';
 import { POPULAR_COMPANIES } from '../types';
 
 export function CompaniesPage() {
@@ -120,14 +121,29 @@ export function CompaniesPage() {
 
 function CompanyCard({ company }: { company: string }) {
   const label = formatCompany(company);
+  const [logoFailed, setLogoFailed] = useState(false);
   return (
     <Link
       to={`/company/${company}`}
       className="group flex h-full items-center gap-3 rounded-xl border border-border bg-card p-3 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold uppercase text-primary">
-        {label.charAt(0)}
-      </span>
+      {logoFailed ? (
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold uppercase text-primary">
+          {label.charAt(0)}
+        </span>
+      ) : (
+        <img
+          src={logoUrl(company)}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          width={36}
+          height={36}
+          onError={() => setLogoFailed(true)}
+          className="h-9 w-9 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-border"
+        />
+      )}
       <span className="min-w-0 flex-1 truncate text-sm font-medium" title={label}>
         {label}
       </span>
