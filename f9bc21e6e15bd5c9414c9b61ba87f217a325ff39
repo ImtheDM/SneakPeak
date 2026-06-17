@@ -1,0 +1,25 @@
+src/lib/logo.ts
+  584c517a0b04482c 1-40
+src/pages/CompaniesPage.tsx
+  584c517a0b04482c 6,124,130-146
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "f9bc21e6e15bd5c9414c9b61ba87f217a325ff39",
+  "prompts": {
+    "584c517a0b04482c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02da4cf2-7794-424f-8779-01f9d306c972",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Deepanshu Mishra",
+      "messages": [],
+      "total_additions": 60,
+      "total_deletions": 4,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    }
+  }
+}
