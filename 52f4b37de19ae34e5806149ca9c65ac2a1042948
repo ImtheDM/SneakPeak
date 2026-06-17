@@ -1,0 +1,29 @@
+src/hooks/useQuestions.ts
+  584c517a0b04482c 2,29-38,40-43,47,52
+src/hooks/useCompanyPeriods.ts
+  584c517a0b04482c 2,27-29,31-32,34,38-40,44
+src/lib/cache.ts
+  584c517a0b04482c 1-53
+src/hooks/useCompanies.ts
+  584c517a0b04482c 2,26-31,34-37,40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "52f4b37de19ae34e5806149ca9c65ac2a1042948",
+  "prompts": {
+    "584c517a0b04482c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02da4cf2-7794-424f-8779-01f9d306c972",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Deepanshu Mishra",
+      "messages": [],
+      "total_additions": 95,
+      "total_deletions": 7,
+      "accepted_lines": 104,
+      "overriden_lines": 0
+    }
+  }
+}
