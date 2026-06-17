@@ -1,0 +1,91 @@
+src/components/ThemeToggle.tsx
+  584c517a0b04482c 1-21
+src/lib/parseCsv.ts
+  584c517a0b04482c 1-60
+src/main.tsx
+  584c517a0b04482c 1-10
+public/vite.svg
+  584c517a0b04482c 1
+src/vite-env.d.ts
+  584c517a0b04482c 1
+tailwind.config.js
+  584c517a0b04482c 1-51
+index.html
+  584c517a0b04482c 1-25
+package.json
+  584c517a0b04482c 1-30
+src/hooks/useCompanies.ts
+  584c517a0b04482c 1-36
+src/hooks/useProgress.ts
+  584c517a0b04482c 1-68
+src/components/Toolbar.tsx
+  584c517a0b04482c 1-74
+src/pages/CompaniesPage.tsx
+  584c517a0b04482c 1-156
+vercel.json
+  584c517a0b04482c 1-4
+vite.config.ts
+  584c517a0b04482c 1-7
+src/hooks/useTheme.ts
+  584c517a0b04482c 1-28
+src/lib/cn.ts
+  584c517a0b04482c 1-15
+tsconfig.json
+  584c517a0b04482c 1-24
+src/components/StateViews.tsx
+  584c517a0b04482c 1-56
+tsconfig.node.json
+  584c517a0b04482c 1-11
+src/lib/github.ts
+  584c517a0b04482c 1-69
+src/index.css
+  584c517a0b04482c 1-64
+src/components/PeriodSelector.tsx
+  584c517a0b04482c 1-29
+src/pages/TrackerPage.tsx
+  584c517a0b04482c 1-176
+.gitignore
+  584c517a0b04482c 1-20
+src/components/Header.tsx
+  584c517a0b04482c 1-30
+src/components/QuestionRow.tsx
+  584c517a0b04482c 1-112
+README.md
+  584c517a0b04482c 1-54
+postcss.config.js
+  584c517a0b04482c 1-6
+src/hooks/useCompanyPeriods.ts
+  584c517a0b04482c 1-43
+src/components/DifficultyBadge.tsx
+  584c517a0b04482c 1-21
+src/components/ProgressBar.tsx
+  584c517a0b04482c 1-85
+src/App.tsx
+  584c517a0b04482c 1-22
+src/components/QuestionTable.tsx
+  584c517a0b04482c 1-122
+src/hooks/useQuestions.ts
+  584c517a0b04482c 1-48
+src/types.ts
+  584c517a0b04482c 1-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "2236f4c030ec2d66628e99cf526e6d744bf4a2a4",
+  "prompts": {
+    "584c517a0b04482c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02da4cf2-7794-424f-8779-01f9d306c972",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Deepanshu Mishra",
+      "messages": [],
+      "total_additions": 1668,
+      "total_deletions": 0,
+      "accepted_lines": 1668,
+      "overriden_lines": 0
+    }
+  }
+}
